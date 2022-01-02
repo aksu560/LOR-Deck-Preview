@@ -1,32 +1,65 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div id="app">
+        <Navbar/>
+        <router-view/>
     </div>
-    <router-view/>
-  </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script lang="ts">
+import Vue from 'vue';
+import Navbar from './components/Navbar.vue';
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+function getOGImage(deckCode: string) {
+    if (deckCode) {
+        let url = `https://storage.googleapis.com/lor-preview.appspot.com/OpenGraphThumbnails/${deckCode}.jpg`
+        return url;
     }
-  }
+    return '';
 }
-</style>
+
+export default Vue.extend({
+    name: 'App',
+    components: {
+        Navbar
+    },
+    metaInfo() {
+        return {
+            title: 'Legends of Runeterra Deck Preview',
+            meta: [
+                {
+                    name: 'description',
+                    content: 'Legends of Runeterra Deck Preview'
+                },
+                {
+                    property: 'og:title',
+                    content: 'Legends of Runeterra Deck Preview'
+                },
+                {
+                    property: 'og:url',
+                    content: window.location.href,
+                },
+                {
+                    property: 'og:type',
+                    content: 'website',
+                },
+                {
+                    property: 'og:image',
+                    content: getOGImage(this.$route.query.deck as string),
+                },
+                {
+                    property: 'og:image:secure_url',
+                    content: getOGImage(this.$route.query.deck as string),
+                },
+                {
+                    property: 'og:image:width',
+                    content: '1800',
+                },
+                {
+                    property: 'og:image:type',
+                    content: 'image/jpeg',
+                },
+            ]
+        }
+    }
+});
+</script>

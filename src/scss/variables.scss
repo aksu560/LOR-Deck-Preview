@@ -1,0 +1,24 @@
+// Variables are in a separate file, so we can import them to components, without re-importing entirety of Bulma.
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap');
+
+$red: #F2545B;
+$green: #7AE7C7;
+$yellow: #FFCF56;
+$blue: #657ED4;
+$gray: #363946;
+$light-gray: #C9CAD9;
+
+$primary: $blue;
+$secondary: $yellow;
+$info: $yellow;
+$success: $green;
+$danger: $red;
+$dark: $gray;
+$light: $light-gray;
+
+$family-serif: "Roboto", serif;
+$family-primary: $family-serif;
+
+$body-background-color: $gray;
+$box-background-color: $light-gray;
+$input-background-color: $light-gray;
